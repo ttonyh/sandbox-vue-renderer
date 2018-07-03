@@ -15,9 +15,9 @@ npm install
 
 webpack
 mini-css-extract-plugin
-uglifyjs-webpack-plugin
-compression-webpack-plugin
-
+~~uglifyjs-webpack-plugin~~
+~~compression-webpack-plugin~~
+friendly-errors-webpack-plugin
 
 
 vue-loader
@@ -35,8 +35,9 @@ babel-preset-env
 babel-plugin-transform-object-rest-spread
 
 
-
-
+babel-plugin-syntax-dynamic-import
+babel-preset-es2015
+babel-preset-stage-2
 
 
 
