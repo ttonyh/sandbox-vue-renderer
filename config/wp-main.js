@@ -11,12 +11,12 @@ const isProd = false;
 
 const baseConfig = {
     
-    mode: 'deployment',
+    mode: 'development',
     
     devtool: isProd ? false : '#cheap-module-source-map',
     
     output: {
-        path: 'OUTPUT/index.js',
+        path: path.resolve( './OUTPUT' ),
         publicPath: '/'
     },
     

@@ -11,5 +11,5 @@ console.info( wpConfig );
 
 
 
-
+webpack( wpConfig );
 
