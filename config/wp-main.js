@@ -5,13 +5,13 @@ const _ = require( 'lodash' ),
 
 
 
-const isProd = false;
+const isProd = true;
 
 
 
 const baseConfig = {
     
-    mode: 'development',
+    mode: isProd ? 'production' : 'development',
     
     devtool: isProd ? false : '#cheap-module-source-map',
     
