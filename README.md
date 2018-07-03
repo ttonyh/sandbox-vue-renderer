@@ -14,15 +14,16 @@ npm install
 
 
 webpack
+mini-css-extract-plugin
 
 
 vue-loader
 vue-style-loader
 style-loader
 sass-loader
-less-loader less
+less-loader
 
-
+less
 
 
 babel-core
