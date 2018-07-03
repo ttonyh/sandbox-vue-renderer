@@ -28,6 +28,10 @@ const baseConfig = {
         }
     },
 
+    entry: [
+        path.resolve( './src' )
+    ],
+
     module: {
         
         rules: [
