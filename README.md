@@ -15,6 +15,9 @@ npm install
 
 webpack
 mini-css-extract-plugin
+uglifyjs-webpack-plugin
+compression-webpack-plugin
+
 
 
 vue-loader
