@@ -16,7 +16,7 @@ const baseConfig = {
     devtool: isProd ? false : '#cheap-module-source-map',
     
     output: {
-        path: path.resolve( './OUTPUT' ),
+        path: path.resolve( './dist' ),
         publicPath: '/'
     },
     
