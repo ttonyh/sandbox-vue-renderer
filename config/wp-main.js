@@ -2,12 +2,12 @@ const _ = require( 'lodash' ),
       path = require( 'path' ),
       { VueLoaderPlugin } = require( 'vue-loader' ),
       MiniCssExtractPlugin = require( 'mini-css-extract-plugin' ),
-      UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' ),
-      CompressionPlugin = require( 'compression-webpack-plugin' );
+      FriendlyErrorsPlugin = require( 'friendly-errors-webpack-plugin' );
 
 
 const isProd = true;
-const doCompress = true;
+
+
 
 
 const baseConfig = {
@@ -137,33 +137,15 @@ const baseConfig = {
         // new CleanWebpackPlugin( [
         //     pathOutput
         // ]),
+        
+        new FriendlyErrorsPlugin(),
+            
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin( {
             filename: '[name].css'
         })
     ]
 };
-
-
-if ( doCompress ) {
-
-    baseConfig.optimization = {
-        minimizer: [
-            new UglifyJsPlugin( {
-                sourceMap: true,
-                uglifyOptions: {
-                    compress: {
-                        inline: false
-                    }
-                }
-            })
-        ]
-    };
-    
-    baseConfig.plugins.push( new CompressionPlugin() );
-}
-
-
 
 console.info( 'CONFIG: \n' );
 console.info( JSON.stringify( baseConfig, null, 2 ) );
