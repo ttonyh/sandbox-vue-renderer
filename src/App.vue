@@ -1,8 +1,9 @@
 <template>
     <div id="app">
 
-        <h1>\{{ msg }}</h1>
-        <h2>Essential Links</h2>
+        <h1>{{ msg }}</h1>
+
+        <h2>Which one?</h2>
 
     </div>
 </template>
@@ -12,7 +13,7 @@
         name: 'app',
         data () {
             return {
-                msg: 'Welcome to Your Vue.js App'
+                msg: 'Some young guy'
             }
         }
     }
