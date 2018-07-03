@@ -24,12 +24,12 @@ const baseConfig = {
         mainFiles: [ 'index', 'index.src' ],
         extensions: [ '.src.js', '.js', '.vue', '.json', '.scss', '.svg' ],
         alias: {
-
+            'vue$': 'vue/dist/vue.esm.js',
         }
     },
 
     entry: [
-        path.resolve( './src' )
+        path.resolve( './src/main.js' )
     ],
 
     module: {
@@ -50,10 +50,6 @@ const baseConfig = {
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 options: {
-                    presets: [
-                        'es2015',
-                        'stage-2'
-                    ],
                     plugins: [
                         'transform-object-rest-spread',
                         'syntax-dynamic-import'
