@@ -1,17 +1,18 @@
 const _ = require( 'lodash' ),
       path = require( 'path' ),
       { VueLoaderPlugin } = require( 'vue-loader' ),
-      MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+      MiniCssExtractPlugin = require( 'mini-css-extract-plugin' ),
+      UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' ),
+      CompressionPlugin = require( 'compression-webpack-plugin' );
 
 
-
-const isProd = false;
-
+const isProd = true;
+const doCompress = true;
 
 
 const baseConfig = {
     
-    mode: 'development',
+    mode: isProd ? 'production' : 'development',
     
     devtool: isProd ? false : '#cheap-module-source-map',
     
@@ -140,6 +141,28 @@ const baseConfig = {
 };
 
 
+if ( doCompress ) {
+
+    baseConfig.optimization = {
+        minimizer: [
+            new UglifyJsPlugin( {
+                sourceMap: true,
+                uglifyOptions: {
+                    compress: {
+                        inline: false
+                    }
+                }
+            })
+        ]
+    };
+    
+    baseConfig.plugins.push( new CompressionPlugin() );
+}
+
+
+
+console.info( 'CONFIG: \n' );
+console.info( JSON.stringify( baseConfig, null, 2 ) );
+
 
 module.exports = baseConfig;
-

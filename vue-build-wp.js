@@ -10,7 +10,7 @@ const wpConfig = require( './config/wp-main' );
 webpack( wpConfig, function() {
     
     
-    console.info( arguments );
+    console.info( 'DONE...' );
 });
 
 
