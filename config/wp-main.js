@@ -16,9 +16,12 @@ const baseConfig = {
     
     devtool: isProd ? false : '#cheap-module-source-map',
     
+    target: 'node',
+    
     output: {
         path: path.resolve( './dist' ),
         publicPath: '/'
+        // libraryTarget: 'commonjs2'
     },
     
     resolve: {
@@ -30,7 +33,8 @@ const baseConfig = {
     },
 
     entry: [
-        path.resolve( './src/main.js' )
+        path.resolve( './src/index.vue' )
+        // path.resolve( './src/main.js' )
     ],
 
     module: {

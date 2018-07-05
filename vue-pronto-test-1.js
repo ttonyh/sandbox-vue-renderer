@@ -29,6 +29,18 @@ const vueOptions = {
 
 const file = './src/index.vue';
 
+
+
+
+
+console.info( renderer.BuildComponent );
+
+
+
+
+
+
+/*
 renderer.RenderToString( file, data, vueOptions )
     .then( function() {
     
@@ -39,5 +51,4 @@ renderer.RenderToString( file, data, vueOptions )
         console.info( "ERROR: " );
         console.info( err );
     });
-
-
+*/
