@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div data-server-rendered="true">
         <h1>This is a single-file component!</h1>
         <ul>
             <li>{{ param1 }}</li>
