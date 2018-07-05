@@ -41,3 +41,4 @@ babel-preset-stage-2
 
 
 
+babel-plugin-transform-runtime

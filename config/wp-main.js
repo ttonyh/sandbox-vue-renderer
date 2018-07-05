@@ -5,7 +5,7 @@ const _ = require( 'lodash' ),
       FriendlyErrorsPlugin = require( 'friendly-errors-webpack-plugin' );
 
 
-const isProd = true;
+const isProd = false;
 
 
 
