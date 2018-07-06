@@ -6,9 +6,19 @@
             <li>{{ param2 }}</li>
             <li>{{ param3 }}</li>
         </ul>
+        
+        <h2>Qual Should be here:</h2>
+        <fp-qual :identity="$store.state.identity"></fp-qual>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis eros risus, eu scelerisque augue molestie quis. Aenean id lectus arcu. Aenean et tristique sem. Suspendisse in pellentesque ligula. Morbi venenatis ex eros, sit amet ultricies odio fringilla et. Suspendisse scelerisque mollis posuere. Aenean odio justo, dictum in ultrices non, dapibus dignissim dui. Aliquam porttitor vitae ligula sit amet venenatis. Nullam ex libero, placerat sed metus non, mollis vulputate felis. Maecenas massa orci, placerat in hendrerit a, sollicitudin in felis. Aliquam lobortis orci ut maximus sagittis. Nulla a arcu sodales, convallis ex at, venenatis dui. Morbi non nisi interdum, venenatis metus ut, lobortis eros. Mauris sed pretium nunc. Nunc ut tristique sem.</p>
-        <p v-show="false">!!!! This is hidden !!!!</p>
-    </div>    
+        <p v-show="showHidden">!!!! This is hidden !!!!</p>
+        
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <button @click.prevent="toggleMsg">Show it!</button>
+    </div>
 </template>
 
 <script>
@@ -17,11 +27,18 @@
             return {
                 param1: 1,
                 param2: 2,
-                param3: 3
+                param3: 3,
+                showHidden: false
             };
         },
         mounted() {
             console.info( 'This has been mounted...' );
+        },
+        methods: {
+            toggleMsg() {
+                this.showHidden = !this.showHidden;
+                return this.showHidden;
+            }
         }
     };
 </script>

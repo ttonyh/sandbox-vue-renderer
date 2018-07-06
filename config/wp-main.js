@@ -147,8 +147,9 @@ const baseConfig = {
     ]
 };
 
-console.info( 'CONFIG: \n' );
-console.info( JSON.stringify( baseConfig, null, 2 ) );
+// DEBUG:
+// console.info( 'CONFIG: \n' );
+// console.info( JSON.stringify( baseConfig, null, 2 ) );
 
 
 module.exports = baseConfig;
