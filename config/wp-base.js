@@ -8,8 +8,6 @@ const _ = require( 'lodash' ),
 const isProd = false;
 
 
-
-
 const baseConfig = {
     
     mode: isProd ? 'production' : 'development',
@@ -21,7 +19,6 @@ const baseConfig = {
     output: {
         path: path.resolve( './dist' ),
         publicPath: '/'
-        // libraryTarget: 'commonjs2'
     },
     
     resolve: {

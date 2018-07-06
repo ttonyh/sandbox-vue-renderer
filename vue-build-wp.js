@@ -3,14 +3,19 @@ const _ = require( 'lodash' ),
       
 
 
-const wpConfig = require( './config/wp-main' );
+const wpServerConfig = require( './config/wp-server' );
+const wpClientConfig = require( './config/wp-client' );
 
-// console.info( wpConfig );
 
-webpack( wpConfig, function() {
-    
-    
-    console.info( 'DONE...' );
+
+webpack( wpServerConfig, function() {
+    console.info( 'Server DONE...' );
+});
+
+
+
+webpack( wpClientConfig, function() {
+    console.info( 'Client DONE...' );
 });
 
 

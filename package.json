@@ -36,8 +36,10 @@
     "vue": "^2.5.16",
     "vue-loader": "^15.2.4",
     "vue-pronto": "^1.6.7",
+    "vue-server-renderer": "^2.5.16",
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
-    "webpack": "4.15.1"
+    "webpack": "4.15.1",
+    "webpack-merge": "^4.1.3"
   }
 }
