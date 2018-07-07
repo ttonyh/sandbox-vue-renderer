@@ -29,11 +29,6 @@ const baseConfig = {
         }
     },
 
-    entry: [
-        path.resolve( './src/index.vue' )
-        // path.resolve( './src/main.js' )
-    ],
-
     module: {
         
         rules: [

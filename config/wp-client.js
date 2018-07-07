@@ -7,6 +7,7 @@ const _ = require( 'lodash' ),
       
 
 module.exports = wpMerge( baseObj, {
+    entry: path.resolve( './src' ),
     output: {
         filename: 'client-bundle.js'
     },
