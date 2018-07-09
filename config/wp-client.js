@@ -14,15 +14,16 @@ module.exports = wpMerge( baseObj, {
     output: {
         // filename: 'client-bundle-[name].js',
         filename: 'client-bundle.js',
+        library: 'DynamicFunnel',
         libraryTarget: 'umd'
     },
     
         
-    optimization: {
-        splitChunks: {
-            chunks: 'all'
-        }
-    },
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: 'all'
+    //     }
+    // },
     
     // externals: {
     //     lodash: '_',

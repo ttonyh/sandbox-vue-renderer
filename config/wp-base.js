@@ -2,10 +2,13 @@ const _ = require( 'lodash' ),
       path = require( 'path' ),
       { VueLoaderPlugin } = require( 'vue-loader' ),
       MiniCssExtractPlugin = require( 'mini-css-extract-plugin' ),
-      FriendlyErrorsPlugin = require( 'friendly-errors-webpack-plugin' );
+      FriendlyErrorsPlugin = require( 'friendly-errors-webpack-plugin' ),
+      CleanWebpackPlugin = require( 'clean-webpack-plugin' );
 
 
-const isProd = false;
+const isProd = false,
+      distOutput = './dist',
+      distFullPath = path.resolve( distOutput );
 
 
 const baseConfig = {
@@ -15,7 +18,7 @@ const baseConfig = {
     devtool: isProd ? false : '#cheap-module-source-map',
         
     output: {
-        path: path.resolve( './dist' ),
+        path: distFullPath,
         publicPath: '/'
     },
     
@@ -124,9 +127,7 @@ const baseConfig = {
     },
 
     plugins: [
-        // new CleanWebpackPlugin( [
-        //     pathOutput
-        // ]),
+        new CleanWebpackPlugin( [ './dist/*.*' ], { watch: true, beforeEmit: true,  verbose: true, dry: false } ),
         
         new FriendlyErrorsPlugin(),
             

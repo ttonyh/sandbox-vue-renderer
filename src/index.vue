@@ -22,7 +22,7 @@
 </template>
 
 <script>
-    export const DynamicFunnel = {
+    export default {
         name: 'DynamicFunnel',
         data() {
             return {
