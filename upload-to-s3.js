@@ -22,22 +22,35 @@ const s3Client = new AWS.S3( { apiVersion: '2006-03-01' } ),
       srcDir = './dist',
       bucket = 'funnel-resources',
       adapterType = 'legacy',
-      rootPath = `development/${adapterType}`;
-
-
+      deployment = 'development',
+      rootPath = `${deployment}/${adapterType}`;
 
 
 
 function uploadDist() {
-    return new Promise( function( resolve, reject ) {      
-        const uploader = client.uploadDir( {
-            localDir: srcDir,
-            s3Params: {
-                Bucket: bucket,
-                Prefix: path.join( rootPath, funnelId )
-            }
-        });
-
+    return new Promise( function( resolve, reject ) {  
+        const filepath = path.join( rootPath, funnelId ),
+              uploader = client.uploadDir( {
+                  localDir: srcDir,
+                  s3Params: {
+                      Bucket: bucket,
+                      Prefix: filepath
+                  },
+                  getS3Params: ( localFile, stat, cb ) => {
+                      const params = {
+                          Metadata: {
+                              funnelId,
+                              adapterType,
+                              deployment,
+                              filepath,
+                              filename: stat.s3Path
+                          }
+                      };
+                  
+                      cb( null, params );
+                  }
+              });
+                    
         uploader.on( 'fileUploadStart', function( f, k ) {
             console.log( "FILE START.. ", f );
         });
@@ -52,4 +65,10 @@ function uploadDist() {
 };
 
 
-uploadDist();
+uploadDist()
+    .then( () => {
+        console.info( 'DONE...' );
+    })
+    .catch( ( err ) => {
+        console.info( 'ERROR: ', err );
+    });
