@@ -11,8 +11,8 @@ module.exports = wpMerge( baseObj, {
     target: 'node',
     entry: path.resolve( './src' ),
     output: {
-        filename: 'server-bundle.js',
-        libraryTarget: 'commonjs2'
+        filename: 'server-bundle.js'
+        // libraryTarget: 'commonjs2'
     },
     externals: nodeExternals( {
         whitelist: /\.css$/
@@ -20,7 +20,7 @@ module.exports = wpMerge( baseObj, {
     plugins: [
         new webpack.DefinePlugin( {
             'process.env.VUE_ENV': '"server"'
-        }),
-        new VueSSRServerPlugin()
+        })
+        // new VueSSRServerPlugin()
     ]
 });

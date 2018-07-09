@@ -22,7 +22,8 @@
 </template>
 
 <script>
-    export default {
+    export const DynamicFunnel = {
+        name: 'DynamicFunnel',
         data() {
             return {
                 param1: 1,
