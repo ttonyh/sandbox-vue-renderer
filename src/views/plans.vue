@@ -8,10 +8,6 @@
     import _ from 'lodash';
  
     export default {
-        name: 'home',
-        components: {
- 
-        },
         meta: {
             title: 'Funnel: PLANS',
             meta: {
