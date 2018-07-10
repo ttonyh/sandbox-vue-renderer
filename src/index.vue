@@ -61,6 +61,6 @@
     }
     
     p {
-        background-color: #eee;
+        background-color: red;
     }
 </style>
