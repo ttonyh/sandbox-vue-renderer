@@ -1,5 +1,6 @@
 const _ = require( 'lodash' ),
       path = require( 'path' ),
+      webpack = require( 'webpack' ),
       { VueLoaderPlugin } = require( 'vue-loader' ),
       MiniCssExtractPlugin = require( 'mini-css-extract-plugin' ),
       FriendlyErrorsPlugin = require( 'friendly-errors-webpack-plugin' ),
@@ -8,12 +9,13 @@ const _ = require( 'lodash' ),
 
 const isProd = false,
       distOutput = './dist',
-      distFullPath = path.resolve( distOutput );
+      distFullPath = path.resolve( distOutput ),
+      mode = isProd ? 'production' : 'development';
 
 
 const baseConfig = {
     
-    mode: isProd ? 'production' : 'development',
+    mode,
     
     devtool: isProd ? false : '#cheap-module-source-map',
         
@@ -21,6 +23,14 @@ const baseConfig = {
         path: distFullPath,
         publicPath: '/'
     },
+    
+    
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: 'all'
+    //     }
+    // },
+    
     
     resolve: {
         mainFiles: [ 'index', 'index.src' ],
@@ -54,7 +64,8 @@ const baseConfig = {
                     ],
                     ignore: [
                         'node_modules'
-                    ]
+                    ],
+                    cacheDirectory: true
                 }
             },
             {
@@ -135,6 +146,8 @@ const baseConfig = {
         new MiniCssExtractPlugin( {
             filename: '[name].css'
         })
+        
+        // new webpack.BannerPlugin( { banner: `mode=${mode}` } )
     ]
 };
 
