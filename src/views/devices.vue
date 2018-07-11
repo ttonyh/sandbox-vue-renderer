@@ -7,8 +7,6 @@
 </template>
 
 <script>
-    import _ from 'lodash';
- 
     export default {
         meta: {
             title: 'Funnel: DEVICES',
