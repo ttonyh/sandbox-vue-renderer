@@ -1,8 +1,8 @@
 <template>
     <div>
-        <router-link to="/offer/20">Home</router-link>
-        <router-link to="/offer/20/plans">Plans</router-link>
-        <router-link to="/offer/20/devices">Devices</router-link>
+        <router-link to="/offer/21">Home</router-link>
+        <router-link to="/offer/21/plans">Plans</router-link>
+        <router-link to="/offer/21/devices">Devices</router-link>
 
         <div>
             <router-view></router-view>
