@@ -7,7 +7,7 @@ const _ = require( 'lodash' ),
       wpMerge = require( 'webpack-merge' );
 
 
-const buildWp = ( config ) => {
+const buildWp = ( config, done ) => {
           console.info( "buildWp: Promise Called..." );
           return new Promise( function( resolve, reject ) {
               console.info( "buildWp: Promise Exec..." );
@@ -27,7 +27,17 @@ const buildWp = ( config ) => {
                   });
                   
                   // Set short return delay
-                  return setTimeout( () => resolve( resObj ), 500 );
+                  // return setTimeout( () => resolve( resObj ), 500 );
+                  return setTimeout( () => {
+                      resolve( resObj );
+                      
+                      // if ( _.isFunction( done ) ) {
+                      //     console.info( "^^^^^^^^ calling done" );
+                      //     done();
+                      // }
+                      
+                  }, 500 );
+                  
                   
                   // return resolve();
               });
@@ -223,7 +233,7 @@ module.exports = function BuildWp( opts = {}, done ) {
         //     done.transfer( { done: true } );
         // }
         
-        return buildWp( finalConfig );
+        return buildWp( finalConfig, done );
     }
 };
 

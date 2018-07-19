@@ -43,6 +43,14 @@ const configs = [
 const wpGenFile = path.resolve( __dirname, './config/wp-gen-config.js' );
 
 
+
+
+pool
+    .on( 'finished', function() {
+        console.log( 'Everything done, shutting down the thread pool.' );
+        pool.killAll();
+    });
+
 configs.forEach( ( cfg ) => {
     _.merge( cfg, baseParams );
     
@@ -66,10 +74,6 @@ configs.forEach( ( cfg ) => {
         })
         .on( 'exit', function() {
             console.log( 'Worker has been terminated.' );
-        })    
-        .on( 'finished', function() {
-            console.log( 'Everything done, shutting down the thread pool.' );
-            pool.killAll();
         });
         // .on( 'message', function( response ) {
         //     console.log( "MESSAGE: ", response );
