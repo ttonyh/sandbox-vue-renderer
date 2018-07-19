@@ -8,13 +8,28 @@ const _ = require( 'lodash' ),
 
 
 const buildWp = ( config ) => {
+          console.info( "buildWp: Promise Called..." );
           return new Promise( function( resolve, reject ) {
+              console.info( "buildWp: Promise Exec..." );
+              
               webpack( config, function( err, stats ) {
+                  console.info( "buildWp: Promise Called..." );
+                  
                   if ( err ) {
                       return reject( err );
+                  } else if ( stats && stats.hasErrors() ) {
+                      return reject( stats );
                   }
                   
-                  return resolve();
+                  const resObj = stats.toJson( {
+                      assets: false,
+                      hash: true
+                  });
+                  
+                  // Set short return delay
+                  return setTimeout( () => resolve( resObj ), 500 );
+                  
+                  // return resolve();
               });
           });
       };

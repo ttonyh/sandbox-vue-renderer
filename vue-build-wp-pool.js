@@ -4,8 +4,10 @@ const _ = require( 'lodash' ),
       // Worker = require( 'jest-worker' ).default;
       // genWpConfig = require( './config/wp-gen-config' );
       threads = require( 'threads' ),
-      spawn = threads.spawn;
-      
+      Pool = threads.Pool;
+      pool = new Pool();
+
+
 
 const rootPath = '/private/var/folders/bp/ky0vbhws0vqf6dysdn1nqk240000gn/T/funnel-generator-3074-5EK4fZ/'
       entryPath = path.join( rootPath, './src' ),
@@ -38,49 +40,23 @@ const configs = [
 ];
 
 
-
-
-/*
-const workerConfig = {
-          exposedMethods: [ 'buildWp' ]
-      },
-      wpGenFile = require.resolve( './config/wp-gen-config' );
-
-
-console.info( 'wpGenFile: ', wpGenFile );
-// console.info( 'Worker: ', Worker );
-
-configs.forEach( ( cfg ) => {
-    const worker = new Worker( wpGenFile, workerConfig );
-    
-    worker.buildWp( _.merge( cfg, baseParams ) )
-        .then( worker.end )
-        .catch( worker.end );
-});
-
-*/
-
-
-
 const wpGenFile = path.resolve( __dirname, './config/wp-gen-config.js' );
 
-// console.info( wpGenFile );
-// console.info( __dirname );
-// process.exit();
-
-console.info( 'HERE... 1' );
-// const thread = spawn( wpGenFile );
-console.info( 'HERE... 2' );
-
-
-console.info( "thread: ", thread );
 
 configs.forEach( ( cfg ) => {
     _.merge( cfg, baseParams );
     
-    // thread
-    spawn( wpGenFile )
+    pool
+        .run( wpGenFile )
         .send( cfg )
+        .on( 'done', function( response ) {
+            console.log( "DONE! " );
+            // console.info( this.__proto__ );
+            console.info( '\n\n\n' );
+            console.info( 'THIS: ' );
+            console.info( this.__proto__ );
+            this.destroy();
+        })
         .on( 'message', function( response ) {
             console.log( "MESSAGE: ", response );
             this.kill();
@@ -90,7 +66,21 @@ configs.forEach( ( cfg ) => {
         })
         .on( 'exit', function() {
             console.log( 'Worker has been terminated.' );
+        })    
+        .on( 'finished', function() {
+            console.log( 'Everything done, shutting down the thread pool.' );
+            pool.killAll();
         });
+        // .on( 'message', function( response ) {
+        //     console.log( "MESSAGE: ", response );
+        //     thread.kill();
+        // })
+        // .on( 'error', function( error ) {
+        //     console.error( 'Worker errored:', error );
+        // })
+        // .on( 'exit', function() {
+        //     console.log( 'Worker has been terminated.' );
+        // });
 });
 
 
